@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday ❤️</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+background:linear-gradient(#020111,#191621);
+font-family:Poppins,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+overflow:hidden;
+text-align:center;
+}
+
+/* stars */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.2;}
+to{opacity:1;}
+}
+
+/* button */
+
+.openBtn{
+padding:18px 40px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:#ff6f91;
+color:white;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 0 20px rgba(255,111,145,0.6);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 10px #ff6f91;}
+50%{box-shadow:0 0 30px #ff6f91;}
+100%{box-shadow:0 0 10px #ff6f91;}
+}
+
+/* cake */
+
+.cake{
+display:none;
+font-size:120px;
+margin-top:40px;
+cursor:pointer;
+animation:fadeUp 1.5s;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(50px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* message */
+
+.message{
+display:none;
+max-width:700px;
+background:rgba(255,255,255,0.1);
+padding:35px;
+border-radius:20px;
+margin-top:30px;
+line-height:1.8;
+backdrop-filter:blur(10px);
+}
+
+/* hearts */
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-100vh);opacity:0;}
+}
+
+.cursor{
+display:inline-block;
+width:3px;
+background:white;
+margin-left:5px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:0}
+100%{opacity:1}
+}
+
+</style>
+</head>
+
+<body>
+
+<h2 id="title">Click the button 💌</h2>
+
+<button class="openBtn" onclick="openMessage()">Open The Message</button>
+
+<div class="cake" id="cake" onclick="blowCandle()">
+🎂
+<p style="font-size:16px">Click the cake to blow the candle</p>
+</div>
+
+<div class="message" id="message">
+<h2>Happy birthday to my girlfriend ❤️</h2>
+<p id="typedText"></p>
+<span class="cursor"></span>
+</div>
+
+<script>
+
+/* stars */
+
+for(let i=0;i<150;i++){
+let star=document.createElement("div")
+star.className="star"
+star.style.left=Math.random()*100+"vw"
+star.style.top=Math.random()*100+"vh"
+star.style.animationDuration=(Math.random()*3+1)+"s"
+document.body.appendChild(star)
+}
+
+/* open button */
+
+function openMessage(){
+document.querySelector(".openBtn").style.display="none"
+document.getElementById("title").style.display="none"
+document.getElementById("cake").style.display="block"
+}
+
+/* typing text */
+
+const message = `
+
+Aku cuma mau bilang kalo aku sayang banget sama kamu. 
+I hope today becomes one of the happiest days for you. 
+Thank you for always being such an amazing person in my life sayang. 
+You're my everything for meeee can't u seeeee wkwkkwkwkw. 
+I’m so grateful to have you.
+
+Aku tahu kadang hidup ndak selalu mudah dan banyak sekali rintangannya, 
+tapi aku percaya kamu kuat dan kamu pasti bisa through and face all of it sayang. 
+I’ll always support you and be here for you no matter what.
+
+Thank you for everything, semua yang udah kamu kasih dan lakuin ke aku, 
+makasih buat udah support aku di hari hariku. 
+You truly mean everything to me. I’m really proud of you and the person you are.
+
+Be crazy, be happy, be everything you want in your life. 
+Be yourself okey, and always i wanna say every years don't let people drive your life ya sayang.
+
+Sekali lagi, happy birthday cengku. 
+I love you so much and I hope all your dreams come true calon bu guru ehehehhe ❤️
+
+`
+
+function typeWriter(){
+
+let i=0
+const speed=35
+const text=document.getElementById("typedText")
+
+function typing(){
+
+if(i<message.length){
+text.innerHTML+=message.charAt(i)
+i++
+setTimeout(typing,speed)
+}
+
+}
+
+typing()
+
+}
+
+/* blow candle */
+
+function blowCandle(){
+
+document.getElementById("cake").style.display="none"
+document.getElementById("message").style.display="block"
+
+typeWriter()
+
+}
+
+/* hearts */
+
+function createHeart(){
+
+const heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤️"
+heart.style.left=Math.random()*100+"vw"
+heart.style.bottom="0"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+heart.remove()
+},5000)
+
+}
+
+setInterval(createHeart,400)
+
+</script>
+
+</body>
+</html>
